@@ -11,3 +11,6 @@ find_package(FLEX REQUIRED)
 message(STATUS "BISON_VERSION=${BISON_VERSION}")
 message(STATUS "FLEX_VERSION=${FLEX_VERSION}")
 
+add_subdirectory(examples)
+
+# 
