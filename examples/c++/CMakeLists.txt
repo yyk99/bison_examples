@@ -25,3 +25,6 @@ add_executable(simple
     Makefile
     simple.yy
     )
+
+add_subdirectory(calc++)
+add_subdirectory(glr)

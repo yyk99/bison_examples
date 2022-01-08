@@ -25,6 +25,9 @@
 # include <string>
 # include "driver.hh"
 # include "parser.hh"
+# if _WIN32
+#   include <io.h> // isatty
+# endif
 %}
 
 %{
