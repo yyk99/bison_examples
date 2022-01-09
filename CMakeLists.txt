@@ -15,6 +15,8 @@ find_package(FLEX REQUIRED)
 message(STATUS "BISON_VERSION=${BISON_VERSION}")
 message(STATUS "FLEX_VERSION=${FLEX_VERSION}")
 
+set_property(GLOBAL PROPERTY USE_FOLDERS ON)
+
 add_subdirectory(examples)
 
 # 

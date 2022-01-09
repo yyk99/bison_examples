@@ -25,4 +25,16 @@ add_executable(calc++
     local.mk # not really needed; reference only
     parser.yy
     scanner.ll
+    # test file
+    calc++.test
     )
+if (MSVC)
+    target_compile_options(calc++
+        PRIVATE 
+            "-D_CRT_NONSTDC_NO_WARNINGS" 
+            "-D_CRT_SECURE_NO_WARNINGS"
+            "/wd4065"
+        )
+endif()
+
+set_target_properties(calc++ PROPERTIES FOLDER "examples/c++")

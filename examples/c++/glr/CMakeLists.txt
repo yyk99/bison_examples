@@ -10,15 +10,21 @@ BISON_TARGET(parser c++-types.yy ${CMAKE_CURRENT_BINARY_DIR}/parser.cc
 include_directories(${CMAKE_CURRENT_BINARY_DIR} ${CMAKE_CURRENT_SOURCE_DIR})
 # include_directories(${FLEX_INCLUDE_DIR})
 
-add_executable(cpp_types
+add_executable(c++-types
     ${BISON_parser_OUTPUTS}
     ${FLEX_scanner_OUTPUTS}
     c++-types.yy
+    c++-types.test
     )
 
 if (MSVC)
-    message (STATUS "Set for Visual Studio calc++")
-    #add_definitions(-D_CRT_INSECURE_DEPRECATE)
-    # _CRT_NONSTDC_NO_WARNINGS
-    target_compile_options(cpp_types PRIVATE "/Zc:__cplusplus" "-D_CRT_NONSTDC_NO_WARNINGS" -D_CRT_SECURE_NO_WARNINGS)
+    target_compile_options(c++-types 
+        PRIVATE 
+            "/Zc:__cplusplus" 
+            "-D_CRT_NONSTDC_NO_WARNINGS" 
+            "-D_CRT_SECURE_NO_WARNINGS"
+            "/wd4065"
+        )
 endif()
+
+set_target_properties(c++-types PROPERTIES FOLDER "examples/c++")
