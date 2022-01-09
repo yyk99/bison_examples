@@ -20,6 +20,7 @@
 
 %{
   #include <stdio.h>  /* For printf, etc. */
+  #include <stdlib.h> /* malloc/free */
   #include <math.h>   /* For pow, used in the grammar. */
   #include "calc.h"   /* Contains definition of 'symrec'. */
   int yylex (void);

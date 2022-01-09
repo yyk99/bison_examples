@@ -3,3 +3,6 @@
 #
 
 add_subdirectory(c++)
+add_subdirectory(c)
+
+# end of file
