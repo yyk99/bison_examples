@@ -15,7 +15,7 @@ add_executable(testxxLexer
     ${BISON_parser_OUTPUTS}
     ${FLEX_scanner_OUTPUTS}
     # extra reference files
-    ../CMAkeLists.txt
+    ../CMakeLists.txt
     testxxLexer.l
     )
 if (MSVC)
