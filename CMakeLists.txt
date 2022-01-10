@@ -18,5 +18,5 @@ message(STATUS "FLEX_VERSION=${FLEX_VERSION}")
 set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 
 add_subdirectory(examples)
-
+add_subdirectory(flex)
 # 
