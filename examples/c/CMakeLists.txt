@@ -6,15 +6,18 @@ macro (add_cbison_app target grama)
     # message(STATUS "add_cbison_app: ${ARGV0} ARGC=${ARGC}")
 
 	BISON_TARGET(${target}_parser ${grama}.y ${CMAKE_CURRENT_BINARY_DIR}/${grama}.c
-             DEFINES_FILE ${CMAKE_CURRENT_BINARY_DIR}/${grama}.h
-             )
+          DEFINES_FILE ${CMAKE_CURRENT_BINARY_DIR}/${grama}.h
+        )
 
-    if (${ARGC} EQUAL 3)
+      if (${ARGC} EQUAL 3)
+	if (MSVC)
+	  set(FLEX_COMPILE_FLAGS "-DYY_NO_UNISTD_H")
+	endif()
         set(scan "${ARGV2}")
         set(extra_files ${scan}.l)
         FLEX_TARGET(${target}_scanner ${scan}.l ${CMAKE_CURRENT_BINARY_DIR}/${scan}.c
              DEFINES_FILE ${CMAKE_CURRENT_BINARY_DIR}/${scan}.h
-             COMPILE_FLAGS "-DYY_NO_UNISTD_H"
+             COMPILE_FLAGS ${FLEX_COMPILE_FLAGS}
              )
     
         message(STATUS "${ARGV0}: ${FLEX_${target}_scanner_OUTPUTS}")

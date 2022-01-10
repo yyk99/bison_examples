@@ -2,6 +2,10 @@
 # bison_examples\examples\c++\calc++\CMakeLists.txt
 #
 
+if (MSVC)
+  set(FLEX_COMPILE_FLAGS "-DYY_NO_UNISTD_H")
+endif()
+
 BISON_TARGET(parser parser.yy ${CMAKE_CURRENT_BINARY_DIR}/parser.cc
     COMPILE_FLAGS "-v"
     DEFINES_FILE ${CMAKE_CURRENT_BINARY_DIR}/parser.hh
@@ -9,7 +13,7 @@ BISON_TARGET(parser parser.yy ${CMAKE_CURRENT_BINARY_DIR}/parser.cc
 
 FLEX_TARGET(scanner scanner.ll ${CMAKE_CURRENT_BINARY_DIR}/scanner.cc
     DEFINES_FILE ${CMAKE_CURRENT_BINARY_DIR}/scanner.hh
-    COMPILE_FLAGS "-DYY_NO_UNISTD_H"
+    COMPILE_FLAGS ${FLEX_COMPILE_FLAGS}
     )
 
 include_directories(${CMAKE_CURRENT_BINARY_DIR} ${CMAKE_CURRENT_SOURCE_DIR})
