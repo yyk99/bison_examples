@@ -2,10 +2,14 @@
 #
 #
 
+if (MSVC)
+    set(FLEX_COMPILE_FLAGS "-DYY_NO_UNISTD_H")
+endif()
+
 # testxxLexer.l
 FLEX_TARGET(scanner testxxLexer.l ${CMAKE_CURRENT_BINARY_DIR}/testxxLexer.l.cc
     DEFINES_FILE ${CMAKE_CURRENT_BINARY_DIR}/testxxLexer.l.hh
-    COMPILE_FLAGS "-DYY_NO_UNISTD_H"
+    COMPILE_FLAGS ${FLEX_COMPILE_FLAGS}
     )
 
 include_directories(${CMAKE_CURRENT_BINARY_DIR} ${CMAKE_CURRENT_SOURCE_DIR})
@@ -15,7 +19,7 @@ add_executable(testxxLexer
     ${BISON_parser_OUTPUTS}
     ${FLEX_scanner_OUTPUTS}
     # extra reference files
-    ../CMAkeLists.txt
+    ../CMakeLists.txt
     testxxLexer.l
     )
 if (MSVC)
